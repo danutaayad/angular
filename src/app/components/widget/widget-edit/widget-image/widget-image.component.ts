@@ -1,15 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit,ViewChild} from '@angular/core';
+import{ActivateRoute,Router}from"@angular/router";
+import{WidgetService}from"../../../../services/widget.service/client";
+	import{Widget}from"../../../../models/widget.model.client;
+	import{NgForm}from"@angular/forms";
 @Component({
   selector: 'app-widget-image',
   templateUrl: './widget-image.component.html',
   styleUrls: ['./widget-image.component.css']
 })
 export class WidgetImageComponent implements OnInit {
+	@ViewChild("f")widgetForm:ngForm;
+    uid:string;
+	wid:string;
+	pid:string;
+	wgid:string;
+	widget:Widget;
+	name:string;
+	text:string;
+	url:string;
+	width:string;
 
-  constructor() { }
+  constructor( private widgetService:WidgetService,private activatedRoute:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
+  	this.activateRoute.params.subscribe(params=>){
+  		this.uid+params['uid'];
+  		this.wid=params['wid"];
+  		this.pid=params['pid'];
+  		this.wgid=params['wgid'];
+  		this.widget=this.widgetService.
+  		findWidgetById(this.wgid);
+  	
   }
+  remove(){
+  	this.widgetService.deleteWidget(this.wgid);
+  	this.router.navigate(["user",this.uid,"website",this.wid,"page",this.pid,"widget"]);
+  }
+  update() {
+  	this.name=this.widgetForm.value.name;
+  	this.text=this.widgetForm.value.text;
+  	this.url=this.widgetForm.value.url;
+  	this.width=this.widgetForm.value.width;
 
-}
+  	const updateWidget:Widget={
+  		_id:this.wgid,
+  		name:this.name,
+  		text:this.text,
+  		url:this.url,
+  		width:this.width,
+  		pageid:this.pid,
+  		widgetType:this.widget.widgetType
+  	}
+  	this.widgetService. updateWidget(this.wgid,updateWidget);
+  	this.router.navigate(["user",this.uid,"website",this.wid,page,this.pid ,'widget'])
+
+  }
+  
+
+

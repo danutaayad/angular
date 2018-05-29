@@ -10,4 +10,21 @@
 			<a class="btn btn-primary btn-block" routerLink='/user/:uid'>Login</a>
 			<a class="btn btn-success btn-block" routerLink="/register">Register</a>
 		</form>
-	</div>	
+	</div>
+	<h1>Login</h1>
+	<div *ngIf="errorFlag" class="alert alert-danger">Invalid user name or password</div>
+	 <form (ngSubmit)="login()" #f='ngForm'>
+	  <div class="form-group">
+	     <input class="form-control" type="text" name="username" placeholder="Username" required ngModel  #username="ngModel">
+	  </div>
+	  <span class="alert" *ngIf="username.invalid && username.tuched">Please enter username!</span>
+	   <div class="form-group">
+	   	 <input-class ="form-control" required type="password" name="password" placeholder="Password" ndModel #password="ngModel">
+	   	</div>
+	   	<span class="alert"*ngIf="password .invalid && password.tuched">Please enter password</span>
+	   	<button class="btn btn-primary btn-block"[disabled]="f.invalid" type="submit">Login</button>
+	   	<button class="btn btn-successs btn-block" routerLink="/register">Register</button>
+	   	</form>
+	   	</div>
+
+
