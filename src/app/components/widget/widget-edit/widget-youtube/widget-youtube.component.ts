@@ -1,64 +1,63 @@
-import { Component, OnInit,ViewChild} from '@angular/core';
-import{ActivateRoute,Router}from"@angular/router";
-import{WidgetService}from"../../../../services/widget.service/client";
-	import{Widget}from"../../../../models/widget.model.client;
-	import{NgForm}from"@angular/forms";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { WidgetService } from "../../../../services/widget.service.client"
+import { Widget } from "../../../../models/widget.model.client"
+import { NgForm } from "@angular/forms";
+
 @Component({
   selector: 'app-widget-youtube',
   templateUrl: './widget-youtube.component.html',
   styleUrls: ['./widget-youtube.component.css']
 })
+export class WidgetYoutubeComponent implements OnInit {
 
-	export class WidgetImageComponent implements OnInit {
-	@ViewChild("f")widgetForm:ngForm;
-    uid:string;
-	wid:string;
-	pid:string;
-	wgid:string;
-	widget:Widget;
-	name:string;
-	text:string;
-	url:string;
-	width:string;
+  @ViewChild('f') widgetForm: NgForm;
 
-  constructor( private widgetService:WidgetService,private activatedRoute:ActivatedRoute,private router:Router) { }
+  uid: string;
+  wid: string;
+  pid: string;
+  wgid: string;
+  widget: Widget;
+  name: string;
+  text: string;
+  url: string;
+  width: string;
 
- 
- ngOnInit() {
-  	this.activateRoute.params.subscribe(params=>){
-  		this.uid+params['uid'];
-  		this.wid=params['wid"];
-  		this.pid=params['pid'];
-  		this.wgid=params['wgid'];
-  		this.widget=this.widgetService.
-  		findWidgetById(this.wgid);
-  	
-  });
-}
 
-remove(){
-  	this.widgetService.deleteWidget(this.wgid);
-  	this.router.navigate(["user",this.uid,"website",this.wid,"page",this.pid,"widget"]);
+  constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute, private router: Router) { }
+
+  ngOnInit() {
+  	this.activatedRoute.params.subscribe(params=>{
+  		this.uid = params['uid'];
+  		this.wid = params['wid'];
+  		this.pid = params['pid'];
+  		this.wgid = params['wgid'];
+  		this.widget = this.widgetService.findWidgetById(this.wgid);
+  	});
   }
 
- update() {
-  	this.name=this.widgetForm.value.name;
-  	this.text=this.widgetForm.value.text;
-  	this.url=this.widgetForm.value.url;
-  	this.width=this.widgetForm.value.width;
+  remove() {
+  	this.widgetService.deleteWidget(this.wgid);
+  	this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+  }
 
-  	const updateWidget:Widget={
-  		_id:this.wgid,
-  		name:this.name,
-  		text:this.text,
-  		url:this.url,
-  		width:this.width,
-  		pageid:this.pid,
-  		widgetType:this.widget.widgetType
+  update() {
+	this.name=this.widgetForm.value.name;
+  	this.text = this.widgetForm.value.text;
+  	this.url = this.widgetForm.value.url;
+  	this.width = this.widgetForm.value.width;
+
+  	const updatedWidget: Widget = {
+  		_id: this.wgid,
+  		name: this.name,
+  		text: this.text,
+  		url: this.url,
+  		width: this.width,
+  		pageId: this.pid,
+  		widgetType: this.widget.widgetType
   	}
-  	this.widgetService. updateWidget(this.wgid,updateWidget);
-  	this.router.navigate(["user",this.uid,"website",this.wid,page,this.pid ,'widget'])
-
+  	this.widgetService.updateWidget(this.wgid, updatedWidget);
+  	this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
   }
 
 }

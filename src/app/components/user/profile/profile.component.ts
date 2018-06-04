@@ -1,37 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import{ActivateRoute}from"@angular/core";
-import{UserService}from"../../../services/user.service.client"
-
-import{User}from"../../../models/user.model.client'
-
-import{ngForm}from"@angular/forms"
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
+import { UserService } from '../../../services/user.service.client'
+import { User } from '../../../models/user.model.client'
+import { NgForm } from '@angular/forms'
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-
 export class ProfileComponent implements OnInit {
-@viewChild("f") profileForm;
-uid:string;
-user:User;
-username:string;
-email:string;
-firstName:string;
-lastName:string;
-oldUsername:string;
-usernameTaken:boolean;
-submitSuccess:boolean;
 
+  @ViewChild('f') profileForm;
 
+  uid: string;
+  user: User;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  oldUsername: string;
+  usernameTaken: boolean;
+  submitSuccess: boolean;
 
-  constructor(private activatedRoute:ActivatedRoute,private userService:UserService){} 
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-  this.activatedRoute.params.subscribe(params=>{
-  this.uid = params['uid'];	
- this.user = this.userService.findUserById(this.uid);
+  	// this.activatedRoute.params.subscribe(
+  	// 	function info(params){
+  	// 		this.uid = params['uid'];
+  	// 		this.user = this.userService.findUserById(this.uid);
+  	// 		this.username = this.user.username;
+  	// 		this.email = this.user.email;
+  	// 		this.firstName = this.user.firstName;
+  	// 		this.lastName = this.user.lastName;
+  	// }.bind(this));
+    this.activatedRoute.params.subscribe(
+      params =>  {
+        this.uid = params['uid'];
+        this.user = this.userService.findUserById(this.uid);
         this.username = this.user.username;
         this.email = this.user.email;
         this.firstName = this.user.firstName;
@@ -66,7 +73,5 @@ submitSuccess:boolean;
       console.log(this.userService.users);
     }
   }
-
-} 
 
 }

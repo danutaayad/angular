@@ -1,9 +1,8 @@
-import { Component, OnInit,ViewChild} from '@angular/core';
-import{ActivateRoute,Router}from"@angular/router";
-import{WidgetService}from"../../../../services/widget.service/client";
-	import{Widget}from"../../../../models/widget.model.client;
-	import{NgForm}from"@angular/forms";
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { WidgetService } from "../../../../services/widget.service.client"
+import { Widget } from "../../../../models/widget.model.client"
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-widget-header',
@@ -11,50 +10,54 @@ import{WidgetService}from"../../../../services/widget.service/client";
   styleUrls: ['./widget-header.component.css']
 })
 export class WidgetHeaderComponent implements OnInit {
-	@ViewChild("f")widgetForm:NgForm;
 
-	uid:string;
-	wid:string;
-	pid:string;
-	wgid:string;
-	widget:Widget;
-	name:string;
-	text:string;
-	size:number;
+  @ViewChild('f') widgetForm: NgForm;
+  
+  uid: string;
+  wid: string;
+  pid: string;
+  wgid: string;
+  widget: Widget;
+  name: string;
+  text: string;
+  size: number;
 
-  constructor(private widgetService:WidgetService,private activatedRoute:ActivatedRoute,private router:Router){}
+
+  constructor(private widgetService: WidgetService, private activitedRoute: ActivatedRoute, private router: Router) { }
+
+
 
   ngOnInit() {
-  	this.activateRoute.params.subscribe(params=>){
-  		this.uid+params['uid'];
-  		this.wid=params['wid"];
-  		this.pid=params['pid'];
-  		this.wgid=params['wgid'];
-  		this.widget=this.widgetService.
-  		findWidgetById(this.wgid);
+  	this.activitedRoute.params.subscribe(params=>{
+  		this.uid = params['uid'];
+  		this.wid = params['wid'];
+  		this.pid = params['pid'];
+  		this.wgid = params['wgid'];
+  		this.widget = this.widgetService.findWidgetById(this.wgid);
   	});
   }
 
+  update(){
+  	this.name = this.widgetForm.value.name;
+  	this.text = this.widgetForm.value.text;
+  	this.size = this.widgetForm.value.size;
 
-update(){
-	this.name=this.WidgetForm.value.name;
-	this.text=this.WidgetForm.value.text;
-	this.size=this.WidgetForm.value.size;
+  	const updatedWidget: Widget = {
+  		_id: this.wgid,
+  		name: this.name,
+  		widgetType: this.widget.widgetType,
+  		pageId: this.pid,
+  		size: this.size,
+  		text: this.text
+  	}
 
-	const updateWidget:Widget={
-		_id:this.wigd,
-		name:this.name,
-		widgetType:this.widget.widgetType,
-		pageId:this.pid,
-		size:this.size,
-		text:this.text
-	}
-		this.widgetService.updateWidget(this.wgid,updateWidget);
-		this.router.navigate(["user",this.uid,"website",this.wid,"page"this.pid,"widget"]);
+  	this.widgetService.updateWidget(this.wgid, updatedWidget);
+  	this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+  }
 
-	}
-}
-remove(){
-	this.widgetService.deleteWidget(this.wgid);
-	this.router.navigate(["user",this.uid,"website",this.wid,"page"this.pid,"widget"]);
+  remove(){
+  	this.widgetService.deleteWidget(this.wgid);
+  	this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
+  }
+
 }
