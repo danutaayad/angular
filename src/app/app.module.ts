@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
+import {HttpModule} from '@angular/http';
+import {Routing} from"./app.routing"
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user/login/login.component';
@@ -19,7 +21,6 @@ import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-he
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 
-import { Routing } from './app.routing';
 
 import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
@@ -50,7 +51,8 @@ import { WidgetService } from './services/widget.service.client';
   imports: [
     BrowserModule,
     Routing,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [UserService, WebsiteService, PageService, WidgetService],
   bootstrap: [AppComponent]
