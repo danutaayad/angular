@@ -1,4 +1,4 @@
-module.export=function(app){
+module.exports=function(app){
 
 	pages: Page = [
 	  { _id: "321", name: "Post 1", websiteId: "456", description: "Lorem" },
@@ -15,7 +15,7 @@ app.delete("/api/page/:pid/",deletePage);
 function createPage(req,res){
   var page = req.body;
 page._id = Math.floor(Math.random() * 10000).toString();
-		page.websiteId = req.params[":wid"];
+		page.websiteId = req.params["wid"];
 		pages.push(page);
 		res.json(page);
  }
