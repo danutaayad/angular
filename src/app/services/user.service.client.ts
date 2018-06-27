@@ -67,7 +67,7 @@ return this.http.get(url).pipe(map(
   }
 
   findUserByCredentials(username: string, password: string) { 
-   const url=this.baseUrl+"/api/user?username"+username + "&password=" +password
+   const url=this.baseUrl+"/api/user?username="+username + "&password=" +password
    return this.http.get(url).pipe(map(
      (response : Response)=>{
      return response.json();

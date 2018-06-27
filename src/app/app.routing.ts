@@ -1,4 +1,4 @@
-import {Routes, RouterModule} from "@angular/router";
+
 import {ModuleWithProviders} from "@angular/core";
 
 import {LoginComponent} from "./components/user/login/login.component";
@@ -15,6 +15,8 @@ import { WidgetChooserComponent } from './components/widget/widget-chooser/widge
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { OmdbtestComponent } from './components/omdbtest/omdbtest.component';
 
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';import {Routes, RouterModule} from "@angular/router";
+
 // Import all other components here 
 
 const APP_ROUTES : Routes = [
@@ -30,8 +32,9 @@ const APP_ROUTES : Routes = [
   { path : 'user/:uid/website/:wid/page/:pid' , component: PageEditComponent},
   { path : 'user/:uid/website/:wid/page/:pid/widget' , component: WidgetListComponent},
   { path : 'user/:uid/website/:wid/page/:pid/widget/new' , component: WidgetChooserComponent},
-  { path : 'user/:uid/website/:wid/page/:pid/widget/:wgid' , component: WidgetEditComponent},
-  { path : 'omdb', component : OmdbtestComponent}
+  
+  { path : 'user/:uid/website/:wid/page/:pid/widget/:wgid/flickr' , component: FlickrImageSearchComponent},
+
 ];
 
 // Export the routes as module providers

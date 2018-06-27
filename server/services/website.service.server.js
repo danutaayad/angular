@@ -29,7 +29,7 @@ function findAllWebsitesForUser(req,res){
 var uid=req.params["uid"];
 var result = [];
 		for (let i = 0;i<websites.length;i++){
-			if (websites[i].developerId === userId) {
+			if (websites[i].developerId === uid) {
 				result.push(websites[i]);
 			}
 		}

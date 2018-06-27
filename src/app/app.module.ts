@@ -20,13 +20,18 @@ import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit
 import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
+import { OmdbtestComponent } from './components/omdbtest/omdbtest.component';
+
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 
 import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
-import { OmdbtestComponent } from './components/omdbtest/omdbtest.component';
+import { FlickrService } from "./services/flickr.service.client"; 
+
+
 
 
 
@@ -48,7 +53,8 @@ import { OmdbtestComponent } from './components/omdbtest/omdbtest.component';
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
-    OmdbtestComponent
+   OmdbtestComponent,
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,7 @@ import { OmdbtestComponent } from './components/omdbtest/omdbtest.component';
     FormsModule,
     HttpModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService],
+  providers: [UserService, WebsiteService, PageService, WidgetService,FlickrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
