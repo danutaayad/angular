@@ -27,41 +27,44 @@ export class RegisterComponent implements OnInit {
    
   }
 
-  register(){
+  register() { 
   	this.username = this.registerForm.value.username;
   	this.password = this.registerForm.value.password;
   	this.verifyPassword = this.registerForm.value.verifyPassword;
-  	 
-     if(this.password !== this.verifyPassword) {
-       this.passwordError = true;
-     }else{
-       this.passwordError = false;
-       this.userService.findUserByUsername(this.username).subscribe(
 
-(user:User)=>{
-
-     this.usernameError=true;
-
-          },
-          (error:any)=>{
-             
-   
-        const newUser: User = {
-          _id: "",
-        username: this.username,
-         password: this.password,
-         firstName: "",
-         lastName: "",
-         email: ""
-         };
-      this.userService.createUser(newUser).subscribe(
-        (user:User)=>{
-          var id = user._id;
-          this.router.navigate(['user', id]);
+    if(this.password !== this.verifyPassword) {
+      this.passwordError = true;
+    } else {
+      this.passwordError = false;
+      this.userService.findUserByUsername(this.username).subscribe(
+        (data:any)=>{
+          if(!data){
+            const newUser:User={
+                  username:this.username,
+                  password:this.password,
+                  firstName:"",
+                  lastName:"",
+                  email:""
+                };
+            this.userService.createUser(newUser).subscribe(
+                (data:User)=>{
+                  var id = data._id;
+                  this.router.navigate(['user', id]);
+                },
+                (error:any) => {
+                 this.usernameError = true;
+                }
+            );
+        } else {
+           this.usernameError = true;
         }
-      )
-        }
-       )
-     }
-  }
+      });
+       
+      }
+    }
  }
+     
+       
+     
+  
+ 

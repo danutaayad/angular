@@ -49,21 +49,12 @@ return this.http.get(url).pipe(map(
   }
 
   findUserByUsername(username: string) { 
-  // for (let x = 0; x < this.users.length; x++) {
-  //     if (this.users[x].username === username) {  
-  //       return this.users[x]; 
-  //     }
-  //   }
-  const url = this.baseUrl+"/api/user?+ username=" +username;
+  const url = this.baseUrl+"/api/user?username=" +username;
      return this.http.get(url).pipe(map(
      (response : Response)=>{
      return response.json();
    }
    ))
-
-   // return this.users.find(function(user: User) {
-    //  return user.username === username;
-   // })
   }
 
   findUserByCredentials(username: string, password: string) { 
