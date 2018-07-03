@@ -19,8 +19,7 @@ export class WidgetImageComponent implements OnInit {
   wid: string;
   pid: string;
   wgid: string;
-  widget: Widget={
-   _id:"",  
+  widget: Widget={ 
    widgetType:"",
    pageId:'',
   };
