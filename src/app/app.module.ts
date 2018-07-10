@@ -30,7 +30,7 @@ import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
 import { FlickrService } from "./services/flickr.service.client"; 
-
+import { SharedService } from "./services/shared.service.client"; 
 
 
 
@@ -62,7 +62,14 @@ import { FlickrService } from "./services/flickr.service.client";
     FormsModule,
     HttpModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService,FlickrService],
+  providers:
+   [
+   UserService, 
+   WebsiteService,
+   PageService,
+   WidgetService,
+   FlickrService,
+   SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
