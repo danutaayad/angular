@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute,Router } from '@angular/router'
 import { UserService } from '../../../services/user.service.client'
 import { User } from '../../../models/user.model.client'
 import { NgForm } from '@angular/forms'
-
+import { SharedService } from '../../../services/shared.service.client'
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -14,7 +14,6 @@ export class ProfileComponent implements OnInit {
   @ViewChild('f') profileForm;
 
   uid: string;
-  user: User;
   username: string;
   email: string;
   firstName: string;
@@ -22,42 +21,29 @@ export class ProfileComponent implements OnInit {
   oldUsername: string;
   usernameTaken: boolean;
   submitSuccess: boolean;
+  user : User = {
+username :"",
+password:"",
+firstName:"", 
+lastName :"",
+email :""
+};
 aUser:User
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService) { }
+         
 
-  ngOnInit() {
-  	// this.activatedRoute.params.subscribe(
-  	// 	function info(params){
-  	// 		this.uid = params['uid'];
-  	// 		this.user = this.userService.findUserById(this.uid);
-  	// 		this.username = this.user.username;
-  	// 		this.email = this.user.email;
-  	// 		this.firstName = this.user.firstName;
-  	// 		this.lastName = this.user.lastName;
-  	// }.bind(this));
+ constructor(private router:Router,private sharedService:SharedService,private activatedRoute: ActivatedRoute, private userService: UserService) { }
+
+  ngOnInit() { 
     this.usernameTaken = false;
     this.submitSuccess = false;
-    this.activatedRoute.params.subscribe(
-      params =>  {
-         this.uid = params['uid'];
-         this.userService.findUserById(this.uid).subscribe(
-         (user: User) => { 
-           this.user=user;
-         this.username =this. user.username;
-         this.email = this. user.email;
-         this.firstName = this. user.firstName;
-         this.lastName =  this.user.lastName;
-         this.oldUsername = this.user.username;
-         }
-        );        // this.user = this.userService.findUserById(this.uid);
-        // this.username = this.user.username;
-        // this.email = this.user.email;
-        // this.firstName = this.user.firstName;
-        // this.lastName = this.user.lastName;
-        // this.oldUsername = this.user.username;
+    this.user = this.sharedService.user;
+    this.uid=this.user._id;
+    this.username =this. user.username;
+    this.email = this. user.email;
+    this.firstName = this. user.firstName;
+    this.lastName =  this.user.lastName;
+    this.oldUsername = this.user.username;
       }
-    );
-  }
 
   update(){
   	this.username = this.profileForm.value.username;
@@ -88,7 +74,7 @@ aUser:User
         lastName: this.lastName,
         email: this.email
       };
-      this.userService.updateUser(this.uid, updatedUser).subscribe(
+      this.userService.updateUser(this.user._id, updatedUser).subscribe(
 (user2:User)=>{
       this.usernameTaken = false;
       this.submitSuccess = true;
@@ -96,6 +82,12 @@ aUser:User
      );
     }
    }
-  }
 
+logout() {
 
+ this.userService.logout().subscribe(
+     (data: any) => this.router.navigate(['/login'])
+     );
+   }
+
+}
