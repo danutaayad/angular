@@ -23,7 +23,7 @@ import { FlickrImageSearchComponent } from './components/widget/widget-edit/widg
 const APP_ROUTES : Routes = [
   { path : '', component : LoginComponent},
   { path : 'login', component : LoginComponent},
-  { path : 'register', component: RegisterComponent,canActivate: [AuthGuard]},
+  { path : 'register', component: RegisterComponent},
   { path : 'user' , component: ProfileComponent,canActivate: [AuthGuard]},
   { path : 'user/:uid/website' , component: WebsiteListComponent, canActivate: [AuthGuard]}, 
   { path : 'user/:uid/website/new' , component: WebsiteNewComponent, canActivate: [AuthGuard]},
@@ -34,7 +34,7 @@ const APP_ROUTES : Routes = [
   { path : 'user/:uid/website/:wid/page/:pid/widget' , component: WidgetListComponent, canActivate: [AuthGuard]},
   { path : 'user/:uid/website/:wid/page/:pid/widget/new' , component: WidgetChooserComponent, canActivate: [AuthGuard]},
   { path : 'user/:uid/website/:wid/page/:pid/widget/:wgid' , component: WidgetEditComponent, canActivate: [AuthGuard]},
-  { path : 'user/:uid/website/:wid/page/:pid/widget/:wgid/flickr' , component: FlickrImageSearchComponent, canActivate: [AuthGuard]},}
+  { path : 'user/:uid/website/:wid/page/:pid/widget/:wgid/flickr' , component: FlickrImageSearchComponent, canActivate: [AuthGuard]}
 ];
 
 // Export the routes as module providers
