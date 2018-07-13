@@ -32,7 +32,7 @@ import { WidgetService } from './services/widget.service.client';
 import { FlickrService } from "./services/flickr.service.client"; 
 import { SharedService } from "./services/shared.service.client"; 
 import {AuthGuard} from './services/auth-guard.service';
-
+import {AdminGuard} from './services/adminGuard.service';
 
 
 @NgModule({
@@ -70,7 +70,9 @@ import {AuthGuard} from './services/auth-guard.service';
    WidgetService,
    FlickrService,
    SharedService,
-   AuthGuard],
+   AuthGuard,
+   AdminGuard
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
