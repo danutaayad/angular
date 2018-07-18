@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import {HttpModule} from '@angular/http';
 import {Routing} from"./app.routing"
-
+import {QuillEditorModule} from'ngx-quill-editor';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
@@ -33,6 +33,7 @@ import { FlickrService } from "./services/flickr.service.client";
 import { SharedService } from "./services/shared.service.client"; 
 import {AuthGuard} from './services/auth-guard.service';
 import {AdminGuard} from './services/adminGuard.service';
+import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
 
 
 @NgModule({
@@ -54,13 +55,15 @@ import {AdminGuard} from './services/adminGuard.service';
     WidgetImageComponent,
     WidgetYoutubeComponent,
    OmdbtestComponent,
-    FlickrImageSearchComponent
+    FlickrImageSearchComponent,
+    WidgetHtmlComponent
   ],
   imports: [
     BrowserModule,
     Routing,
     FormsModule,
-    HttpModule
+    HttpModule,
+    QuillEditorModule
   ],
   providers:
    [

@@ -41,7 +41,8 @@ adminloggedIn() {
          this.sharedService.user = user; // setting user so as to share with all components
          return true;
      } else {
-         this.router.navigate(['/login']);
+        // this.router.navigate(['/login']);
+        alert("Your account is not allowed,please...")
          return false;
        }
      }
@@ -139,7 +140,7 @@ return this.http.get(url).pipe(map(
 
   updateUser(userId: string, user: User) { 
 
-  const url = this.baseUrl+"/api/user"+ userId;
+  const url = this.baseUrl+"/api/user/"+ userId;
 return this.http.put(url, user).pipe(map(
   (response:Response)=>{
     return response.json();

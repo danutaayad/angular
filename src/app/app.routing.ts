@@ -16,7 +16,7 @@ import { WidgetChooserComponent } from './components/widget/widget-chooser/widge
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { OmdbtestComponent } from './components/omdbtest/omdbtest.component';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
-import {AdminGuard} from './services/adminGuard.service';
+
 // Import all other components here 
 
 const APP_ROUTES : Routes = [
@@ -28,7 +28,7 @@ const APP_ROUTES : Routes = [
   { path : 'user/:uid/website/new' , component: WebsiteNewComponent, canActivate: [AuthGuard]},
   { path : 'user/:uid/website/:wid' , component: WebsiteEditComponent, canActivate: [AuthGuard]},
   { path : 'user/:uid/website/:wid/page' , component: PageListComponent, canActivate: [AuthGuard]},
-  { path : 'user/:uid/website/:wid/page/new' , component: PageNewComponent, canActivate: [AuthGuard,AdminGuard]},
+  { path : 'user/:uid/website/:wid/page/new' , component: PageNewComponent, canActivate: [AuthGuard]},
   { path : 'user/:uid/website/:wid/page/:pid' , component: PageEditComponent, canActivate: [AuthGuard]},
   { path : 'user/:uid/website/:wid/page/:pid/widget' , component: WidgetListComponent, canActivate: [AuthGuard]},
   { path : 'user/:uid/website/:wid/page/:pid/widget/new' , component: WidgetChooserComponent, canActivate: [AuthGuard]},

@@ -40,5 +40,10 @@ export class WidgetListComponent implements OnInit {
   	// telling browser this src is safe
   	return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
-
+ parseHTML(text) {
+  // console.log(text);
+    var parsedText = text.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+    console.log(parsedText);
+    return parsedText;
+  }
 }

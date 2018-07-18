@@ -5,15 +5,15 @@ export class User {
 	firstName: string;
 	lastName: string;
 	email: string;
-	role?:string;
+	// role?:string;
 
-	constructor(_id, username, password,firstName,lastName,email,role) {
+	constructor(_id, username, password,firstName,lastName,email) {
 		this._id = _id;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.role = role;
+		// this.role = role;
 	}
 }
