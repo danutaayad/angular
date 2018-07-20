@@ -34,6 +34,7 @@ import { SharedService } from "./services/shared.service.client";
 import {AuthGuard} from './services/auth-guard.service';
 import {AdminGuard} from './services/adminGuard.service';
 import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html
     WidgetYoutubeComponent,
    OmdbtestComponent,
     FlickrImageSearchComponent,
-    WidgetHtmlComponent
+    WidgetHtmlComponent,
+    WidgetTextComponent
   ],
   imports: [
     BrowserModule,
